@@ -158,14 +158,37 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="widget">
+                            <h2 class="section-title mb-3">Waktu sholat</h2>
                             <div class="widget-body">
-                                <img loading="lazy" decoding="async" src="/front/1/images/author.jpg" alt="About Me"
-                                    class="w-100 author-thumb-sm d-block">
-                                <h2 class="widget-title my-3">Hootan Safiyari</h2>
-                                <p class="mb-3 pb-2">Hello, I’m Hootan Safiyari. A Content writter, Developer and Story
-                                    teller. Working as a Content writter at CoolTech Agency. Quam nihil …</p> <a
-                                    href="about.html" class="btn btn-sm btn-outline-primary">Know
-                                    More</a>
+                                <table class="table table-bordered table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th class="bg-success" scope="col">#</th>
+                                            <th class="bg-success" scope="col">First</th>
+                                            <th class="bg-success" scope="col">Last</th>
+                                            <th class="bg-success" scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td colspan="2">Larry the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
