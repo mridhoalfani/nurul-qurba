@@ -27,7 +27,8 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item">
-                        <img class="d-block w-100 img-fluid" src="" alt="Slide">
+                        <img class="d-block w-100 img-fluid" src="/storage/images/post_images/1706022089_banner_7.jpg"
+                            alt="Slide">
                     </div>
 
                 </div>
