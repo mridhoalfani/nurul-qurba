@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="col-12">
-            <h2 class="section-title">Postingan terlama</h2>
+            <h2 class="section-title">Postingan terbaru</h2>
         </div>
         <div class="col-lg-8 mb-5 mb-lg-0">
             <div class="row">
