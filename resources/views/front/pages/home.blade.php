@@ -27,7 +27,7 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item">
-                        <img class="d-block w-100 img-fluid" src="/storage/images/post_images/1706022089_banner_7.jpg"
+                        <img class="d-block w-100 img-fluid" src="http://www.ivang-design.com/svg-load/portfolio/freel.jpg"
                             alt="Slide">
                     </div>
 
