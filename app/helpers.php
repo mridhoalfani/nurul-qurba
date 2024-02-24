@@ -96,7 +96,7 @@ if (!function_exists('latest_home_6posts')) {
         return Post::with('author')
             ->with('subcategory')
             ->skip(1)
-            ->limit(6)
+            ->limit(12)
             ->orderBy('created_at', 'desc')
             ->get();
     }
