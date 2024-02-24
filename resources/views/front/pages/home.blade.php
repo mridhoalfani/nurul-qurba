@@ -160,7 +160,7 @@
                         <div class="widget">
                             <h2 class="section-title mb-3">Waktu sholat</h2>
                             <div class="widget-body">
-                                <table class="table table-bordered table-dark">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th class="bg-success" scope="col">#</th>
