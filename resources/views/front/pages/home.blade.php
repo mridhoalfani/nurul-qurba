@@ -22,57 +22,19 @@
 
 
     <div class="row no-gutters-lg">
-        {{-- <div class="col-12">
-            <div id="carouselExampleControls" class="carousel slide mb-4" data-ride="carousel">
-                <div class="carousel-inner">
-
-                    <div class="carousel-item">
-                        <img class="d-block w-100 img-fluid" src="http://www.ivang-design.com/svg-load/portfolio/freel.jpg"
-                            alt="Slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 img-fluid" src="http://www.ivang-design.com/svg-load/portfolio/freel.jpg"
-                            alt="Slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100 img-fluid" src="http://www.ivang-design.com/svg-load/portfolio/freel.jpg"
-                            alt="Slide">
-                    </div>
-
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div> --}}
         <div class="col-12">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100"
-                            src="https://img.freepik.com/free-photo/sports-car-driving-asphalt-road-night-generative-ai_188544-8052.jpg?t=st=1708794641~exp=1708798241~hmac=c5b98d7ca2b686633e54f1556763fa2be40892b83b44765bc616ccd0d77ab6c7&w=1060"
-                            alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100"
-                            src="https://img.freepik.com/premium-photo/full-length-woman-exercising-park_1048944-29809198.jpg?w=1060"
-                            alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100"
-                            src="https://img.freepik.com/free-photo/still-life-sport-composition_23-2149006370.jpg?t=st=1708794429~exp=1708798029~hmac=2c648b8bf3ab91eba2fec1b128ca707c545820f39470388288a3d350f7d6f215&w=1060"
-                            alt="Third slide">
-                    </div>
+                    @foreach (\App\Models\Hero::all() as $key => $hero)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <img class="d-block w-100" src="{{ asset('back/dist/img/hero-image/' . $hero->hero_image) }}"
+                                alt="Slide {{ $key }}">
+                        </div>
+                    @endforeach
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -153,6 +115,7 @@
                 @endforeach
             </div>
         </div>
+
         <div class="col-lg-4">
             <div class="widget-blocks">
                 <div class="row">

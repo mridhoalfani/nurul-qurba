@@ -30,10 +30,11 @@
                             <div class="mb-2" style="max-width: 200px">
                                 <img src="" alt="" class="img-thumbnail" id="image-logo-previewer">
                             </div>
-                            <form action="{{ route('author.add-hero') }}" method="post" id="changeBlogLogoForm">
+                            <form action="{{ route('author.add-hero') }}" method="post" id="changeBlogHeroForm"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-2">
-                                    <input type="file" name="hero_image" class="form-control"
+                                    <input type="file" id="hero_image" name="hero_image" class="form-control"
                                         onchange="previewImageLogo(this)">
                                 </div>
                                 <button class="btn btn-primary">Add</button>
@@ -62,5 +63,29 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+
+        $('#changeBlogHeroForm').submit(function(e) {
+            e.preventDefault();
+            var form = this;
+            $.ajax({
+                url: $(form).attr('action'),
+                method: $(form).attr('method'),
+                data: new FormData(form),
+                processData: false,
+                dataType: 'json',
+                contentType: false,
+                beforeSend: function() {},
+                success: function(data) {
+                    toastr.remove();
+                    if (data.status == 1) {
+                        $(form)[0].reset();
+                        toastr.success(data.msg);
+                    } else {
+                        toastr.error(data.msg);
+                    }
+                }
+            });
+        });
     </script>
 @endpush

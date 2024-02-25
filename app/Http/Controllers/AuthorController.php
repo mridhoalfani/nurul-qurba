@@ -313,6 +313,31 @@ class AuthorController extends Controller
 
     public function addHero(Request $request)
     {
-        dd($request);
+        // dd($request);
+        $request->validate([
+            'hero_image' => 'required|mimes:jpg,jpeg,png|max:2000',
+        ]);
+
+        $hero_path = 'back/dist/img/hero-image';
+
+        $uploadImage = $request->file('hero_image');
+        $imageNameWithExt = $uploadImage->getClientOriginalName();
+        $imageName = pathinfo($imageNameWithExt, PATHINFO_FILENAME);
+        $imageExt = $uploadImage->getClientOriginalExtension();
+        $storeImage = $imageName . time() . "." . $imageExt;
+
+        $uploadImage->move(public_path($hero_path), $storeImage);
+
+
+        $hero = Hero::create([
+            'hero_image' => $storeImage,
+        ]);
+
+        return response()->json([
+            'status' => 1,
+            'redirect_url' => route('author.custom'),
+            'msg' => 'Image has been successfully uploaded.',
+
+        ]);
     }
 }
