@@ -15,7 +15,7 @@
             <ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
 
                 <li class="nav-item">
-                    <a href="#tabs-profile-ex1" class="active nav-link" data-bs-toggle="tab">Logo & Favicon</a>
+                    <a href="#tabs-profile-ex1" class="active nav-link" data-bs-toggle="tab">Hero section</a>
                 </li>
 
             </ul>

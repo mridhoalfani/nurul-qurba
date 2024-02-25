@@ -313,5 +313,6 @@ class AuthorController extends Controller
 
     public function addHero(Request $request)
     {
+        dd($request);
     }
 }
