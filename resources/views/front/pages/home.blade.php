@@ -119,7 +119,7 @@
         <div class="col-lg-4">
             <div class="widget-blocks">
                 <div class="row">
-                    <div class="col-lg-12">
+                    {{-- <div class="col-lg-12">
                         <div class="widget">
                             <h2 class="section-title mb-3">Waktu sholat</h2>
                             <div class="widget-body">
@@ -154,7 +154,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     @if (recomended_posts())
                         <div class="col-lg-12 col-md-6">
                             <div class="widget">
@@ -217,9 +217,13 @@
 
         .carousel-item img {
             max-width: 100%;
-            height: auto;
+            height: 100%;
+            /* Atur tinggi gambar menjadi 100% agar mengisi carousel item */
             display: block;
-            background-size: cover;
+            object-fit: cover;
+            /* Mengatur gambar untuk mengisi ruang tanpa distorsi */
+            object-position: center;
+            /* Menyimpan bagian penting dari gambar di tengah */
         }
 
         /* Media query untuk resolusi layar kecil */

@@ -24,7 +24,7 @@ class Authors extends Component
     protected $listeners = [
         'resetForms',
         'deleteAuthorAction'
-    ]; 
+    ];
 
     // public function mount(){
     //     $this->resetPage();
@@ -34,26 +34,28 @@ class Authors extends Component
     //     $this->resetPage();
     // }
 
-    public function resetForms(){
+    public function resetForms()
+    {
         $this->name = $this->email = $this->username = $this->author_type = $this->direct_publish = null;
         $this->resetErrorBag();
     }
 
-    public function addAuthor(){
+    public function addAuthor()
+    {
         $this->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email',
-            'username'=>'required|unique:users,username|min:6|max:20',
-            'author_type'=>'required',
-            'direct_publish'=>'required',
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|unique:users,username|min:6|max:20',
+            'author_type' => 'required',
+            'direct_publish' => 'required',
         ], [
-            'author.type.required'=>'Choose author type',
-            'direct_publish.required'=>'Specify author publication access',
+            'author.type.required' => 'Choose author type',
+            'direct_publish.required' => 'Specify author publication access',
         ]);
 
 
-        if($this->isOnline()){
-            
+        if ($this->isOnline()) {
+
             $default_password = Random::generate(8);
 
             $author = new User();
@@ -69,35 +71,34 @@ class Authors extends Component
                 'name' => $this->name,
                 'username' => $this->username,
                 'email' => $this->email,
-                'password'=> $default_password,
-                'url'=> route('author.profile'),
+                'password' => $default_password,
+                'url' => route('author.profile'),
             );
 
             $author_email = $this->email;
             $author_name = $this->name;
 
-            if($saved){
+            if ($saved) {
 
-                Mail::send('new-author-email-template', $data, function($message) use ($author_email, $author_name){
+                Mail::send('new-author-email-template', $data, function ($message) use ($author_email, $author_name) {
                     $message->from('noreply@example.com', 'Larablog');
-                    $message->to($author_email,$author_name)
-                            ->subject('Account creation');
+                    $message->to($author_email, $author_name)
+                        ->subject('Account creation');
                 });
 
                 $this->dispatch('success');
                 $this->name = $this->email = $this->username = $this->author_type = $this->direct_publish = null;
                 $this->dispatch('hide_add_author_modal');
-
-            }else{
+            } else {
                 $this->dispatch('error');
             }
-
-        }else{
+        } else {
             $this->dispatch('error');
         }
     }
 
-    public function editAuthor($author){
+    public function editAuthor($author)
+    {
         $this->selected_author_id = $author['id'];
         $this->name = $author['name'];
         $this->email = $author['email'];
@@ -108,22 +109,23 @@ class Authors extends Component
         $this->dispatch('showEditAuthorModal');
     }
 
-    public function updateAuthor(){
+    public function updateAuthor()
+    {
         $this->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email,'.$this->selected_author_id,
-            'username'=>'required|min:6|max:20|unique:users,username,'.$this->selected_author_id,
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $this->selected_author_id,
+            'username' => 'required|min:6|max:20|unique:users,username,' . $this->selected_author_id,
         ]);
 
-        if($this->selected_author_id){
+        if ($this->selected_author_id) {
             $author = User::find($this->selected_author_id);
             $author->update([
-                'name'=>$this->name,
-                'email'=>$this->email,
-                'username'=>$this->username,
-                'type'=>$this->author_type,
-                'blocked'=>$this->blocked,
-                'direct_publish'=>$this->direct_publish,
+                'name' => $this->name,
+                'email' => $this->email,
+                'username' => $this->username,
+                'type' => $this->author_type,
+                'blocked' => $this->blocked,
+                'direct_publish' => $this->direct_publish,
             ]);
 
             $this->dispatch('success');
@@ -131,31 +133,33 @@ class Authors extends Component
         }
     }
 
-    public function deleteAuthor($id){
+    public function deleteAuthor($id)
+    {
         $this->delete_id = $id;
         $this->dispatch('deleteAuthor');
     }
 
-    public function deleteAuthorAction(){
+    public function deleteAuthorAction()
+    {
         $author = User::where('id', $this->delete_id)->first();
         $path = 'back/dist/img/authors/';
         $author_picture = $author->getAttributes()['picture'];
-        $picture_full_path = $path.$author_picture;
+        $picture_full_path = $path . $author_picture;
 
-        if($author_picture != null || File::exists(public_path($picture_full_path))){
+        if ($author_picture != null || File::exists(public_path($picture_full_path))) {
             File::delete(public_path($picture_full_path));
         }
 
         $author->delete();
         $this->dispatch('authorDeleted');
-
     }
 
 
-    public function isOnline($site = "https://youtube.com/"){
-        if(@fopen($site,"r")){
+    public function isOnline($site = "https://youtube.com/")
+    {
+        if (@fopen($site, "r")) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -163,9 +167,9 @@ class Authors extends Component
     public function render()
     {
         return view('livewire.authors', [
-            'authors'=>User::search(trim($this->search))
-                        ->orderBy('id', 'desc')
-                        ->where('id','!=', auth()->id())->paginate($this->perPage),
+            'authors' => User::search(trim($this->search))
+                ->orderBy('id', 'desc')
+                ->where('id', '!=', auth()->id())->paginate($this->perPage),
         ]);
     }
 }

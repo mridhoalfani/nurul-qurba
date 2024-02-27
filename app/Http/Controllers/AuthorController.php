@@ -105,7 +105,13 @@ class AuthorController extends Controller
             $settings->update([
                 'blog_favicon' => $filename
             ]);
-            return response()->json(['status' => 1, 'msg' => 'Blog favicon has been successfully updated']);
+            // return response()->json(['status' => 1, 'msg' => 'Blog favicon has been successfully updated']);
+            return response()->json([
+                'status' => 1,
+                'redirect_url' => route('author.settings'),
+                'msg' => 'Logo has been successfully updating.',
+
+            ]);
         } else {
             return response()->json(['status' => 0, 'msg' => 'Something went wrong']);
         }
@@ -339,5 +345,77 @@ class AuthorController extends Controller
             'msg' => 'Image has been successfully uploaded.',
 
         ]);
+    }
+
+    public function editHero(Request $request)
+    {
+        if (!request()->hero_id) {
+            return abort(404);
+        } else {
+            $hero = Hero::find(request()->hero_id);
+            $data = [
+                'hero' => $hero,
+                'pageTitle' => 'Edit Hero'
+            ];
+            return view('back.pages.edit_hero', $data);
+        }
+    }
+
+    public function updateHero(Request $request)
+    {
+        // Validasi input jika diperlukan
+
+        $hero = Hero::find($request->hero_id);
+
+        if (!$hero) {
+            return abort(404);
+        }
+
+        // Jika ada file gambar yang diunggah, update gambar hero
+        if ($request->hasFile('hero_image')) {
+            // Hapus gambar hero sebelumnya dari folder
+            $oldImagePath = public_path('back/dist/img/hero-image/' . $hero->hero_image);
+            if (File::exists($oldImagePath)) {
+                File::delete($oldImagePath);
+            }
+
+            // Simpan gambar hero yang baru diunggah
+            $image = $request->file('hero_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('back/dist/img/hero-image/'), $imageName);
+            $hero->hero_image = $imageName;
+        }
+
+        // Lakukan update data hero jika ada perubahan
+        // Contoh: $hero->judul = $request->judul;
+        // $hero->deskripsi = $request->deskripsi;
+        $hero->save();
+
+        return response()->json([
+            'code' => 1,
+            'msg' => 'Post has been successfully updating.',
+
+        ]);
+    }
+
+    public function deleteHero(Request $request)
+    {
+        $hero = Hero::find($request->hero_id);
+
+        if (!$hero) {
+            return abort(404);
+        }
+
+        // Hapus gambar hero dari folder
+        $imagePath = public_path('back/dist/img/hero-image/' . $hero->hero_image);
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
+
+        // Hapus entri hero dari database
+        $hero->delete();
+
+        return redirect()->route('author.all_heros')
+            ->with('success', 'Hero successfully deleted.');
     }
 }

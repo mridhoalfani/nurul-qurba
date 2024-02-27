@@ -28,6 +28,9 @@ Route::prefix('author')->name('author.')->group(function () {
 
             Route::view('/customization', 'back.pages.custom')->name('custom');
             Route::post('/add-hero', [AuthorController::class, 'addHero'])->name('add-hero');
+            Route::view('/all', 'back.pages.all_heros')->name('all_heros');
+            Route::get('/edit-hero', [AuthorController::class, 'editHero'])->name('edit-hero');
+            Route::post('/update-hero', [AuthorController::class, 'updateHero'])->name('update-hero');
 
 
             Route::post('/change-blog-logo', [AuthorController::class, 'changeBlogLogo'])->name('change-blog-logo');

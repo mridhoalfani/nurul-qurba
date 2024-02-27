@@ -18,22 +18,22 @@
 @push('scripts')
     <script>
         window.addEventListener('hideCategoryModel', function(e) {
-            $('#categories_modal').modal('hide');
+            jQuery('#categories_modal').modal('hide');
         });
 
         window.addEventListener('showcategoriesModal', function(e) {
-            $('#categories_modal').modal('show');
+            jQuery('#categories_modal').modal('show');
         });
 
         window.addEventListener('hideSubCategoriesModal', function(e) {
-            $('#subcategories_modal').modal('hide');
+            jQuery('#subcategories_modal').modal('hide');
         });
 
         window.addEventListener('showSubCategoriesModal', function(e) {
-            $('#subcategories_modal').modal('show');
+            jQuery('#subcategories_modal').modal('show');
         });
 
-        $('#categories_modal,#subcategories_modal').on('hidden.bs.modal', function(e) {
+        jQuery('#categories_modal,#subcategories_modal').on('hidden.bs.modal', function(e) {
             Livewire.dispatch('resetModalForm');
         });
 
@@ -79,7 +79,7 @@
             });
         });
 
-        $('table tbody#sortable_category').sortable({
+        jQuery('table tbody#sortable_category').sortable({
             update: function(event, ui) {
                 $(this).children().each(function(index) {
                     if ($(this).attr("data-ordering") != (index + 1)) {

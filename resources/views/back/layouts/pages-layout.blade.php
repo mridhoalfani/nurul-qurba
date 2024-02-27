@@ -73,10 +73,12 @@
 
     <!-- Libs JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -90,24 +92,20 @@
     <script src="/back/dist/libs/jsvectormap/dist/maps/world-merc.js?1684106062" defer></script>
 
     <script src="/jquery-ui-1.13.2/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-
-
-
 
 
     <!-- Tabler Core -->
     <script src="/back/dist/js/tabler.min.js?1684106062" defer></script>
-    @stack('scripts')
+
     @livewireScripts
+
 
     <script>
         jQuery.noConflict();
-        $('input[name="post_tags"]').amsifySuggestags();
+        jQuery('input[name="post_tags"]').amsifySuggestags();
 
-        $(document).ready(function() {
+        jQuery(document).ready(function() {
             toastr.options = {
                 "progressBar": true,
                 "positionClass": "toast-top-right"
@@ -134,6 +132,7 @@
 
     <script src="/back/dist/js/demo.min.js?1684106062" defer></script>
 
+    @stack('scripts')
 </body>
 
 </html>

@@ -53,7 +53,7 @@
                                     class="img-thumbnail" id="image-favicon-previewer">
                             </div>
                             <form action="{{ route('author.change-blog-favicon') }}" method="post"
-                                id="changeBlogFaviconForm">
+                                id="changeBlogFaviconForm" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-2">
                                     <input type="File" name="blog_favicon" class="form-control"
@@ -144,6 +144,9 @@
                     toastr.remove();
                     if (data.status == 1) {
                         toastr.success(data.msg);
+                        // Redirect ke halaman tujuan
+                        console.log('Redirecting to:', response.redirect_url);
+                        window.location.href = response.redirect_url;
                         $(form)[0].reset();
                         Livewire.dispatch('updateTopHeader');
                     } else {
