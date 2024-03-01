@@ -23,6 +23,12 @@
                 <div class="row row-dack row-cards">
                     <div class="col-sm-6 col-lg-3">
                         <div class="card">
+                            <iframe src="//www.arrahmah.id/jadwal-shalat/?bg=097900" scrolling="no" width="100%"
+                                height="200" frameborder="no" framespacing="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="subheader">Sales</div>
@@ -98,7 +104,8 @@
                                 </div>
                                 <div class="progress progress-sm">
                                     <div class="progress-bar bg-primary" style="width: 75%" role="progressbar"
-                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                        aria-label="75% Complete">
                                         <span class="visually-hidden">75% Complete</span>
                                     </div>
                                 </div>

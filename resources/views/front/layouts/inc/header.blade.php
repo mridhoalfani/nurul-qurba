@@ -40,7 +40,7 @@
                     @endforeach
                     {{-- <li class="nav-item"> <a class="nav-link" href="contact.html">About me</a> --}}
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="contact.html">Kontak</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>
                     </li>
                 </ul>
             </div>

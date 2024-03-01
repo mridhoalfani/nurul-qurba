@@ -26,5 +26,4 @@ Route::get('/article/{any}', [BlogController::class, 'readPost'])->name('read_po
 Route::get('/category/{any}', [BlogController::class, 'categoryPosts'])->name('category_posts');
 Route::get('/posts/tag/{any}', [BlogController::class, 'tagPosts'])->name('tag_posts');
 Route::get('/search', [BlogController::class, 'searchBlog'])->name('search_posts');
-
-
+Route::view('/kontak', 'front.pages.kontak')->name('kontak');
