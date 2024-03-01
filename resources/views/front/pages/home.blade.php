@@ -155,6 +155,10 @@
                             </div>
                         </div>
                     </div> --}}
+                    <div class="col-lg-12">
+                        <iframe src="//www.arrahmah.id/jadwal-shalat/?bg=097900" scrolling="no" width="100%"
+                            height="200" frameborder="no" framespacing="0"></iframe>
+                    </div>
                     @if (recomended_posts())
                         <div class="col-lg-12 col-md-6">
                             <div class="widget">
